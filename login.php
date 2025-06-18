@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Login page for DAP project" />
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css" />
+    <!-- CSS End -->
+
+    <title>Project</title>
+
+    <!-- <style>
+      h1,
+      h2 {
+        text-align: center;
+        color: #69bf64;
+      }
+    </style> -->
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark shadow-sm" style="background-color: darkolivegreen">
+      <div class="container">
+        <a class="navbar-brand" href="index.html"><img src="dap.png" alt="" width="30" height="30" class="d-inline-block align-text-top" /> DAP</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <!-- <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Form</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Print</a>
+            </li> -->
+            <li class="nav-item">
+              <a class="nav-link" href="#">Login</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Navbar End -->
+    <!-- Jumbotron -->
+    <section class="jumbotron text-center">
+
+      <form action="cek-login.php" method="POST" class="row g-3" style="padding: 2rem">
+        <div class="col-md-4">
+          <label for="username" class="form-label">Username</label>
+          <input type="number" class="form-control" id="username" name="username" placeholder="Username" required/>
+        </div>
+        <div class="col-md-4">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" class="form-control" id="password" name="password" placeholder="Password" required/>
+        </div>
+        <div class="col-md-4">
+          <label for="status" class="form-label">Status</label>
+          <select class="form-select" name="status" id="status">
+            <option value="madya">Jabatan Fungsional Madya</option>
+            <option value="kabid">Kepala Bidang</option>
+            <option value="kadis">Kepala Dinas</option>
+            <option value="admin">Admin</option>
+          </select>
+        </div>
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary">Sign in</button>
+        </div>
+      </form>
+
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+        <path
+          fill="#ffffff"
+          fill-opacity="1"
+          d="M0,160L24,149.3C48,139,96,117,144,122.7C192,128,240,160,288,149.3C336,139,384,85,432,80C480,75,528,117,576,117.3C624,117,672,75,720,58.7C768,43,816,53,864,48C912,43,960,21,1008,53.3C1056,85,1104,171,1152,181.3C1200,192,1248,128,1296,90.7C1344,53,1392,43,1416,37.3L1440,32L1440,320L1416,320C1392,320,1344,320,1296,320C1248,320,1200,320,1152,320C1104,320,1056,320,1008,320C960,320,912,320,864,320C816,320,768,320,720,320C672,320,624,320,576,320C528,320,480,320,432,320C384,320,336,320,288,320C240,320,192,320,144,320C96,320,48,320,24,320L0,320Z"
+        ></path>
+      </svg>
+    </section>
+    <!-- Jumbotron End -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  </body>
+</html>
