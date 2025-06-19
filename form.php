@@ -6,9 +6,6 @@ if (!isset($_SESSION['username']) || $_SESSION['status'] !== 'madya') {
     header('Location: login.php'); // Redirect ke halaman login jika belum login atau bukan user
     exit();
 }
-
-// echo "<h1>Welcome User, " . $_SESSION['username'] . "!</h1>";
-// echo "<p>Ini adalah halaman khusus user.</p>";
 ?>
 
 <!DOCTYPE html>
@@ -28,9 +25,9 @@ if (!isset($_SESSION['username']) || $_SESSION['status'] !== 'madya') {
 
     <title>Project</title>
   </head>
-  <body>
+  <body style="background-color: whitesmoke">
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark shadow-sm" style="background-color: darkolivegreen">
+    <nav class="navbar navbar-expand-lg navbar-dark shadow-sm" style="background-color: black">
       <div class="container">
         <a class="navbar-brand" href="#"><img src="dap.png" alt="" width="30" height="30" class="d-inline-block align-text-top" /> DAP</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,9 +38,6 @@ if (!isset($_SESSION['username']) || $_SESSION['status'] !== 'madya') {
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="#">Form</a>
             </li>
-            <!-- <li class="nav-item">
-              <a class="nav-link" href="data.php">Data</a>
-            </li> -->
             <li class="nav-item">
               <a class="nav-link" href="logout.php">Logout</a>
             </li>
@@ -54,6 +48,7 @@ if (!isset($_SESSION['username']) || $_SESSION['status'] !== 'madya') {
     <!-- Navbar End -->
     <!-- Jumbotron -->
     <section class="jumbotron text-center">
+    <div class="card-custom mx-auto" style="max-width: 1500px;">
       <h1 class="display-4">Formulir Pertimbangan</h1>
       <p class="lead">Penilaian Kinerja JF Ahli Madya</p>
       <form action="input.php" method="POST" enctype="multipart/form-data">
@@ -107,20 +102,22 @@ if (!isset($_SESSION['username']) || $_SESSION['status'] !== 'madya') {
           </div>
         </div>
         <div class="col-12">
-          <button type="SUBMIT" class="btn btn-primary">Submit</button>
-          <button type="reset" class="btn btn-primary">Reset</button>
+          <button type="SUBMIT" class="btn btn-dark me-3">Submit</button>
+          <button type="reset" class="btn btn-dark">Reset</button>
         </div>
       </form>
+    </div>
     </section>
     <!-- Jumbotron End -->
 
     <!-- Tabel -->
     <section class="jumbotron text-center">
-      <!-- <h1 class="display-4">Data Pengajuan</h1> -->
-      <p class="lead">Data Pengajuan</p>
+    <div class="card-custom mx-auto" style="max-width: 1500px;">
+    <h1 class="display-4">Data Pengajuan</h1><br>
+      <!-- <p class="lead">Data Pengajuan</p> -->
 
     <div style="padding-left: 2rem; padding-right: 2rem">
-          <table class="table table-striped">
+          <table class="table table-hover table-striped">
             <thead>
               <tr>
                 <th style="vertical-align : middle;text-align:center;">No</th>
@@ -193,14 +190,7 @@ if (!isset($_SESSION['username']) || $_SESSION['status'] !== 'madya') {
               <?php } ?>
           </table>
     </div>
-
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-        <path
-          fill="#ffffff"
-          fill-opacity="1"
-          d="M0,160L24,149.3C48,139,96,117,144,122.7C192,128,240,160,288,149.3C336,139,384,85,432,80C480,75,528,117,576,117.3C624,117,672,75,720,58.7C768,43,816,53,864,48C912,43,960,21,1008,53.3C1056,85,1104,171,1152,181.3C1200,192,1248,128,1296,90.7C1344,53,1392,43,1416,37.3L1440,32L1440,320L1416,320C1392,320,1344,320,1296,320C1248,320,1200,320,1152,320C1104,320,1056,320,1008,320C960,320,912,320,864,320C816,320,768,320,720,320C672,320,624,320,576,320C528,320,480,320,432,320C384,320,336,320,288,320C240,320,192,320,144,320C96,320,48,320,24,320L0,320Z"
-        ></path>
-      </svg>
+    </div>
     </section>
     <!-- Table End -->
 

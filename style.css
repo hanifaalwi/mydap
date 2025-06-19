@@ -1,4 +1,17 @@
 .jumbotron {
   padding-top: 2rem;
-  background-color: beige;
+  background-color: whitesmoke;
+}
+.table-hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transform: scale(1.002);
+  border-left: 4px solid black;
+  border-right: 4px solid black;
+  cursor: pointer;
+}
+.card-custom {
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  padding: 40px;
 }

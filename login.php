@@ -14,18 +14,10 @@
     <!-- CSS End -->
 
     <title>Project</title>
-
-    <!-- <style>
-      h1,
-      h2 {
-        text-align: center;
-        color: #69bf64;
-      }
-    </style> -->
   </head>
-  <body>
+  <body style="background-color: whitesmoke">
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark shadow-sm" style="background-color: darkolivegreen">
+    <nav class="navbar navbar-expand-lg navbar-dark shadow-sm" style="background-color: black">
       <div class="container">
         <a class="navbar-brand" href="index.html"><img src="dap.png" alt="" width="30" height="30" class="d-inline-block align-text-top" /> DAP</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -33,15 +25,6 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav ms-auto">
-            <!-- <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Form</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Print</a>
-            </li> -->
             <li class="nav-item">
               <a class="nav-link" href="#">Login</a>
             </li>
@@ -52,6 +35,7 @@
     <!-- Navbar End -->
     <!-- Jumbotron -->
     <section class="jumbotron text-center">
+    <div class="card-custom mx-auto" style="max-width: 1500px;">
 
       <form action="cek-login.php" method="POST" class="row g-3" style="padding: 2rem">
         <div class="col-md-4">
@@ -72,17 +56,10 @@
           </select>
         </div>
         <div class="col-12">
-          <button type="submit" class="btn btn-primary">Sign in</button>
+          <button type="submit" class="btn btn-dark">Log in</button>
         </div>
       </form>
-
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
-        <path
-          fill="#ffffff"
-          fill-opacity="1"
-          d="M0,160L24,149.3C48,139,96,117,144,122.7C192,128,240,160,288,149.3C336,139,384,85,432,80C480,75,528,117,576,117.3C624,117,672,75,720,58.7C768,43,816,53,864,48C912,43,960,21,1008,53.3C1056,85,1104,171,1152,181.3C1200,192,1248,128,1296,90.7C1344,53,1392,43,1416,37.3L1440,32L1440,320L1416,320C1392,320,1344,320,1296,320C1248,320,1200,320,1152,320C1104,320,1056,320,1008,320C960,320,912,320,864,320C816,320,768,320,720,320C672,320,624,320,576,320C528,320,480,320,432,320C384,320,336,320,288,320C240,320,192,320,144,320C96,320,48,320,24,320L0,320Z"
-        ></path>
-      </svg>
+    </div>
     </section>
     <!-- Jumbotron End -->
 
