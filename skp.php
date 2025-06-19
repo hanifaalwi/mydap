@@ -1,44 +1,32 @@
 <?php
-include 'koneksi.php';
-
-// if (isset($_GET['Nomor'])) {
-//     $Nomor = intval($_GET['Nomor']);
-//     $query = "SELECT SKP FROM data WHERE Nomor = $Nomor";
-//     $result = $connect->query($query);
-
-//     if ($result && $pecah = $result->fetch_assoc()) {
-//         header("Content-Type: application/pdf");
-//         header("Content-Disposition: inline");
-//         echo $pecah['SKP'];
-//         exit;
-//     } else {
-//         echo "File tidak ditemukan.";
-//     }
-// } else {
-//     echo "Permintaan tidak valid.";
-// }
-
+include "koneksi.php";
 
 if (!isset($_GET['Nomor'])) {
-    die("File tidak tersedia");
+    die("Parameter tidak valid.");
 }
 
-$Nomor = intval($_GET['Nomor']);
+$Nomor = $_GET['Nomor'];
+$query = mysqli_query($connect, "SELECT SKP FROM data WHERE Nomor = '$Nomor'");
+$data  = mysqli_fetch_assoc($query);
 
-$stmt = $connect->prepare("SELECT SKP FROM data WHERE Nomor = ?");
-$stmt->bind_param("i", $Nomor);
-$stmt->execute();
-$stmt->store_result();
-$stmt->bind_result($SKP);
-if ($stmt->fetch()) {
-    header("Content-Type: application/pdf");
-    header("Content-Disposition: inline;"); // Nama file default
-    echo $SKP;
+if (!$data || empty($data['SKP'])) {
+    die("❌ File tidak ditemukan dalam database.");
+}
+
+$namaFile = trim($data['SKP']);
+// Jika nama file sudah ada 'uploads/' di dalamnya, jangan tambah lagi
+if (strpos($namaFile, 'uploads/') === 0) {
+    $pathFile = $namaFile;
 } else {
-    echo "File tidak ditemukan.";
+    $pathFile = 'uploads/' . $namaFile;
 }
 
-$stmt->close();
-$connect->close();
-?>
+if (!file_exists($pathFile)) {
+    die("❌ File fisik tidak ditemukan: $pathFile");
+}
 
+header('Content-Type: application/pdf');
+header('Content-Disposition: inline; filename="' . basename($pathFile) . '"');
+readfile($pathFile);
+exit();
+?>

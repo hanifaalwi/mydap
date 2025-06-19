@@ -156,7 +156,7 @@ if (!isset($_SESSION['username']) || $_SESSION['status'] !== 'madya') {
                   <td><?php echo $pecah['Bidang']; ?></td>
                   <td><?php echo $pecah['Kabid']; ?></td>
 
-                  <td><a type="button" class="nav-item btn btn-success tombol" href="skp.php?Nomor={$pecah['Nomor']}" target="_blank">SKP</a></td>
+                  <td><a type="button" class="nav-item btn btn-success tombol" href="skp.php?Nomor=<?php echo $pecah['Nomor']; ?>" target="_blank">SKP</a></td>
 
                   <td><a type="button" class="nav-item btn btn-success tombol" href="<?php echo $pecah['Link']; ?>" target="_blank">Link</a></td>
 
