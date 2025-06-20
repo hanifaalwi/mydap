@@ -23,13 +23,20 @@ if (!isset($_SESSION['username']) || $_SESSION['status'] !== 'madya') {
     <link rel="stylesheet" href="style.css" />
     <!-- CSS End -->
 
+    <style>
+      .jumbotron2 {
+      background-color: whitesmoke;
+      padding-bottom: 2rem;
+    }
+    </style>
+
     <title>Project</title>
   </head>
   <body style="background-color: whitesmoke">
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark shadow-sm" style="background-color: black">
       <div class="container">
-        <a class="navbar-brand" href="#"><img src="dap.png" alt="" width="30" height="30" class="d-inline-block align-text-top" /> DAP</a>
+        <a class="navbar-brand" href="#"><img src="dap.png" alt="" width="30" height="30" class="d-inline-block align-text-top" /> Dinas Kearsipan dan Perpustakaan</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -111,7 +118,7 @@ if (!isset($_SESSION['username']) || $_SESSION['status'] !== 'madya') {
     <!-- Jumbotron End -->
 
     <!-- Tabel -->
-    <section class="jumbotron text-center">
+    <section class="jumbotron2 text-center">
     <div class="card-custom mx-auto" style="max-width: 1500px;">
     <h1 class="display-4">Data Pengajuan</h1><br>
       <!-- <p class="lead">Data Pengajuan</p> -->
@@ -193,7 +200,7 @@ if (!isset($_SESSION['username']) || $_SESSION['status'] !== 'madya') {
     </div>
     </section>
     <!-- Table End -->
-
+        
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
   </body>
 </html>
