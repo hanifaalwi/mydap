@@ -54,46 +54,58 @@ if (!isset($_SESSION['username']) || $_SESSION['status'] !== 'admin' && $_SESSIO
       <p class="lead">Pertimbangan Penilaian Kinerja JF Ahli Madya</p>
  
     <div style="padding-left: 2rem; padding-right: 2rem">
-          <table class="table table-hover table-striped">
-            <thead>
-              <tr>
-                <th rowspan="2" style="vertical-align : middle;text-align:center;">No</th>
-                <th rowspan="2" style="vertical-align : middle;text-align:center;">Nama</th>
-                <th rowspan="2" style="vertical-align : middle;text-align:center;">NIP</th>
-                <th rowspan="2" style="vertical-align : middle;text-align:center;">Jabatan</th>
-                <th rowspan="2" style="vertical-align : middle;text-align:center;">Bidang</th>
-                <th rowspan="2" style="vertical-align : middle;text-align:center;">Kepala Bidang</th>
-                <th rowspan="2" style="vertical-align : middle;text-align:center;">SKP</th>
-                <th rowspan="2" style="vertical-align : middle;text-align:center;">Link</th>
-                <th rowspan="2" style="vertical-align : middle;text-align:center;">Status</th>
-              </tr>
-            </thead>
-            <tbody>
-
             <?php 
             include "koneksi.php";
-            $query_mysqli = mysqli_query($connect,"SELECT * FROM data")or die(mysqli_error());
+            $query_mysqli = mysqli_query($connect,"SELECT * FROM data ORDER BY Kabid")or die(mysqli_error());
+
+            $kelompok_kabid = [];
+            while ($row = mysqli_fetch_assoc($query_mysqli)) {
+                $kelompok_kabid[$row['Kabid']][] = $row;
+            }
                         
+            foreach ($kelompok_kabid as $kabid => $list_pegawai) {
+              echo "<h4 class='mt-5 mb-3 text-start'><b>$kabid</b></h4>";
+              echo "<div class='table-responsive'>";
+              echo "<table class='table table-hover table-striped'>";
+              echo "<thead>
+                      <tr>
+                        <th>No</th>
+                        <th>Nama</th>
+                        <th>NIP</th>
+                        <th>Jabatan</th>
+                        <th>Bidang</th>
+                        <th>SKP</th>
+                        <th>Link</th>
+                        <th>Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>";
             $Nomor = 1;
-            while($pecah = mysqli_fetch_array($query_mysqli)){
-            ?>
-                <tr style="vertical-align : middle;text-align:center;">
-                  <th scope="row"><?php echo $Nomor++; ?></th>
-                  <td><?php echo $pecah['Nama']; ?></td>
-                  <td><?php echo $pecah['NIP']; ?></td>
-                  <td><?php echo $pecah['Jabatan']; ?></td>
-                  <td><?php echo $pecah['Bidang']; ?></td>
-                  <td><?php echo $pecah['Kabid']; ?></td>
-                  <td><a type="button" class="nav-item btn btn-success tombol" href="skp.php?Nomor=<?php echo $pecah['Nomor']; ?>" target="_blank">SKP</a></td>
-                  <td><a type="button" class="nav-item btn btn-success tombol" href="<?php echo $pecah['Link']; ?>" target="_blank">Link</a></td>
-                  <td><?php echo $pecah['status']; ?></td>
-                </tr>
-                 <?php
-                  // $no++;}
-                ?>
-              </tbody>
-              <?php } ?>
-          </table>
+            foreach ($list_pegawai as $pegawai) {
+              echo "<tr style='vertical-align : middle;text-align:center;'>";
+              echo "<td>{$Nomor}</td>";
+              echo "<td>{$pegawai['Nama']}</td>";
+              echo "<td>{$pegawai['NIP']}</td>";
+              echo "<td>{$pegawai['Jabatan']}</td>";
+              echo "<td>{$pegawai['Bidang']}</td>";
+              echo "<td><a class='btn btn-success' href='skp.php?Nomor={$pegawai['Nomor']}' target='_blank'>SKP</a></td>";
+              echo "<td><a class='btn btn-success' href='{$pegawai['Link']}' target='_blank'>Link</a></td>";
+               
+               $status = strtolower($pegawai['status']);
+                if ($status === 'disetujui') {
+                    echo "<td><a class='btn btn-success' href='surat.php?Nomor={$pegawai['Nomor']}' target='_blank'><i class='fa fa-print'></i></a></td>";
+                } elseif ($status === 'revisi') {
+                    echo "<td><a class='btn btn-danger' href='#'><i class='fa fa-ban'></i></a></td>";
+                } else {
+                    echo "<td><a class='btn btn-warning' href='#'><i class='fa fa-spinner'></i></a></td>";
+                }
+
+                echo "</tr>";
+                $Nomor++;
+            } 
+            echo "</tbody></table></div>";
+          }
+          ?>
     </div>
     </div>
     </section>

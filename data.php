@@ -65,6 +65,8 @@ if (!isset($_SESSION['username']) || $_SESSION['status'] !== 'kabid') {
                 <th style="vertical-align : middle;text-align:center;">SKP</th>
                 <th style="vertical-align : middle;text-align:center;">Link</th>
                 <th style="vertical-align : middle;text-align:center;">Tools</th>
+                <th style="vertical-align : middle;text-align:center;">Status</th>
+                <th style="vertical-align : middle;text-align:center;">Keterangan</th>
               </tr>
             </thead>
             <tbody>
@@ -94,11 +96,34 @@ if (!isset($_SESSION['username']) || $_SESSION['status'] !== 'kabid') {
                   <td><a type="button" class="nav-item btn btn-success tombol" href="skp.php?Nomor=<?php echo $pecah['Nomor']; ?>" target="_blank">SKP</a></td>
                   <td><a type="button" class="nav-item btn btn-success tombol" href="<?php echo $pecah['Link']; ?>" target="_blank">Link</a></td>
                   <td>
+                    <?php
+                    // Ambil status satu kali saja
+                    $status = $pecah['status'];
+                    $isFinalStatus = ($status == 'disetujui' || $status == 'revisi');
+                    ?>
+
+                    <!-- Tombol Setujui -->
+                    <a href="acc.php?id=<?php echo $pecah['Nomor']; ?>&status=disetujui" 
+                      type="button" 
+                      class="nav-item btn btn-primary tombol <?php echo $isFinalStatus ? 'disabled-link' : ''; ?>"
+                      onclick="return <?php echo $isFinalStatus ? 'false' : 'confirm(\'Apakah Anda yakin ingin menyetujui data ini?\')'; ?>;">
+                      <i class="fa fa-check mr-3"></i>
+                    </a>
+
+                    <!-- Tombol Revisi -->
+                    <a href="revisi.php?id=<?php echo $pecah['Nomor']; ?>&status=revisi" 
+                      type="button" 
+                      class="nav-item btn btn-danger tombol <?php echo $isFinalStatus ? 'disabled-link' : ''; ?>"
+                      onclick="return <?php echo $isFinalStatus ? 'false' : 'confirm(\'Apakah Anda yakin ingin menolak data ini?\')'; ?>;">
+                      <i class="fa fa-times mr-3"></i>
+                    </a>
+                  </td>
+                  <td>
                     <?php $status = $pecah['status']; ?>
                     <?php if (strtolower($status) == 'disetujui'): ?>
-                      <a type="button" class="nav-item btn btn-primary tombol" href="surat.php?Nomor=<?php echo $pecah['Nomor']; ?>" target="_blank"><i class="fa fa-print mr-3"></i></a>
+                      <a type="button" class="nav-item btn btn-success tombol" href="surat.php?Nomor=<?php echo $pecah['Nomor']; ?>" target="_blank"><i class="fa fa-print mr-3"></i></a>
                     <?php elseif (strtolower($status) == 'revisi'): ?>
-                      <a type="button" class="nav-item btn btn-primary tombol" href="#"  onclick="showKomentarForm(<?php echo $pecah['Nomor']; ?>)"><i class="fa fa-comment mr-3"></i></a>
+                      <a type="button" class="nav-item btn btn-danger tombol" href="#"  onclick="showKomentarForm(<?php echo $pecah['Nomor']; ?>)"><i class="fa fa-ban mr-3"></i></a>
 
                       <!-- Form Komentar (sembunyi dulu) -->
                       <form id="form-komentar-<?php echo $pecah['Nomor']; ?>" action="komentar.php" method="POST" style="display: none; margin-top: 10px;">
@@ -116,30 +141,10 @@ if (!isset($_SESSION['username']) || $_SESSION['status'] !== 'kabid') {
                       </script>
 
                     <?php else: ?>
-                      <a type="button" class="nav-item btn btn-primary tombol" href="#"><i class="fa fa-spinner mr-3"></i></a>
+                      <a type="button" class="nav-item btn btn-warning tombol" href="#"><i class="fa fa-spinner mr-3"></i></a>
                     <?php endif; ?>
-                   <?php
-                    // Ambil status satu kali saja
-                    $status = $pecah['status'];
-                    $isFinalStatus = ($status == 'disetujui' || $status == 'revisi');
-                    ?>
-
-                    <!-- Tombol Setujui -->
-                    <a href="acc.php?id=<?php echo $pecah['Nomor']; ?>&status=disetujui" 
-                      type="button" 
-                      class="nav-item btn btn-warning tombol <?php echo $isFinalStatus ? 'disabled-link' : ''; ?>"
-                      onclick="return <?php echo $isFinalStatus ? 'false' : 'confirm(\'Apakah Anda yakin ingin menyetujui data ini?\')'; ?>;">
-                      <i class="fa fa-check mr-3"></i>
-                    </a>
-
-                    <!-- Tombol Revisi -->
-                    <a href="revisi.php?id=<?php echo $pecah['Nomor']; ?>&status=revisi" 
-                      type="button" 
-                      class="nav-item btn btn-danger tombol <?php echo $isFinalStatus ? 'disabled-link' : ''; ?>"
-                      onclick="return <?php echo $isFinalStatus ? 'false' : 'confirm(\'Apakah Anda yakin ingin menolak data ini?\')'; ?>;">
-                      <i class="fa fa-times mr-3"></i>
-                    </a>
                   </td>
+                  <td><?php echo $pecah['komentar']; ?></td>
                 </tr>
               </tbody>
               <?php } ?>

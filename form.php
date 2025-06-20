@@ -167,9 +167,9 @@ if (!isset($_SESSION['username']) || $_SESSION['status'] !== 'madya') {
                   <td>
                     <?php $status = $pecah['status']; ?>
                     <?php if (strtolower($status) == 'disetujui'): ?>
-                      <a type="button" class="nav-item btn btn-warning tombol" href="surat.php?Nomor=<?php echo $pecah['Nomor']; ?>" target="_blank"><i class="fa fa-print mr-3"></i></a>
+                      <a type="button" class="nav-item btn btn-success tombol" href="surat.php?Nomor=<?php echo $pecah['Nomor']; ?>" target="_blank"><i class="fa fa-print mr-3"></i></a>
                     <?php elseif (strtolower($status) == 'revisi'): ?>
-                      <a type="button" class="nav-item btn btn-warning tombol" onclick="tampilkanKomentar(<?php echo $pecah['Nomor']; ?>)"><i class="fa fa-comment mr-3"></i></a>
+                      <a type="button" class="nav-item btn btn-danger tombol" onclick="tampilkanKomentar(<?php echo $pecah['Nomor']; ?>)"><i class="fa fa-ban mr-3"></i></a>
                       <script>
                       function tampilkanKomentar(Nomor) {
                         fetch("ambil_komentar.php?Nomor=" + Nomor)
