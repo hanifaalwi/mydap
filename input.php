@@ -25,6 +25,7 @@ $Jabatan  = $_POST['Jabatan'];
 $Bidang   = $_POST['Bidang'];
 $Kabid    = $_POST['Kabid'];
 $Link     = $_POST['Link'];
+$Periode  = $_POST['Periode'];
 $status   = $_POST['status'];
 $tanggal  = $_POST['tanggal'];
 
@@ -43,9 +44,9 @@ $target   = 'uploads/' . $namaBaru;
 if (move_uploaded_file($tmpFile, $target)) {
     mysqli_query($connect, "INSERT INTO data VALUES (
         '', '$Nama', '$NIP', '$Jabatan', '$Bidang', '$Kabid',
-        '$namaBaru', '$Link', '$status', '', '$tanggal'
+        '$namaBaru', '$Link', '$Periode', '$status', '', '$tanggal'
     )");
-    header("Location: form.php?berhasil=1");
+    header("Location: madya.php?berhasil=1");
     exit();
 } else {
     die("❌ Gagal upload file.");

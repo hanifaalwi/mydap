@@ -23,7 +23,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($data['status'] == 'kadis') {
             header('Location: rekap.php');
         } if ($data['status'] == 'madya') {
-            header('Location: form.php');
+            header('Location: madya.php');
         } if ($data['status'] == 'kabid') {
             header('Location: data.php');
         } if ($data['status'] == 'admin') {
