@@ -43,7 +43,9 @@ $pecah = mysqli_fetch_assoc($query);
         <tr><td>Nama</td><td>:</td><td><?php echo $pecah['Nama']; ?></td></tr>
         <tr><td>NIP</td><td>:</td><td><?php echo $pecah['NIP']; ?></td></tr>
         <tr><td>Jabatan</td><td>:</td><td><?php echo $pecah['Jabatan']; ?></td></tr>
-        <tr><td>Link</td><td>:</td><td><?php echo $pecah['Link']; ?></td></tr>
+        <tr><td>Bidang</td><td>:</td><td><?php echo $pecah['Bidang']; ?></td></tr>
+        <tr><td>Periode</td><td>:</td><td><?php echo $pecah['Periode']; ?></td></tr>
+        <tr><td>Status</td><td>:</td><td><?php echo $pecah['status']; ?></td></tr>
     </table>
 
 </div>

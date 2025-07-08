@@ -35,27 +35,25 @@
     <!-- Navbar End -->
     <!-- Jumbotron -->
     <section class="jumbotron text-center">
-    <div class="card-custom mx-auto" style="max-width: 1500px;">
+    <div class="card-custom mx-auto" style="max-width: 400px;">
 
-      <form action="cek-login.php" method="POST" class="row g-3" style="padding: 2rem">
-        <div class="col-md-4">
-          <label for="username" class="form-label">Username</label>
+      <form action="cek-login.php" method="POST" class="row g-3" style="padding: 2rem; margin: auto" >
+        <div class="mb-3">
           <input type="number" class="form-control" id="username" name="username" placeholder="Username" required/>
-        </div>
-        <div class="col-md-4">
-          <label for="password" class="form-label">Password</label>
+        </div><br>
+        <div class="mb-3">
           <input type="password" class="form-control" id="password" name="password" placeholder="Password" required/>
-        </div>
-        <div class="col-md-4">
-          <label for="status" class="form-label">Status</label>
-          <select class="form-select" name="status" id="status">
+        </div><br>
+        <div class="mb-3">
+          <select class="form-select" name="status" id="status" required>
+            <option value="" selected disabled>Pilih Status</option>
             <option value="madya">Jabatan Fungsional Madya</option>
             <option value="kabid">Kepala Bidang</option>
             <option value="kadis">Kepala Dinas</option>
             <option value="admin">Admin</option>
           </select>
         </div>
-        <div class="col-12">
+        <div class="text-center">
           <button type="submit" class="btn btn-dark">Log in</button>
         </div>
       </form>
