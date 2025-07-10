@@ -12,8 +12,8 @@
     <!-- CSS -->
     <link rel="stylesheet" href="style.css" />
     <!-- CSS End -->
-
-    <title>Project</title>
+    <link rel="icon" href="dap.png" />
+    <title>FSKP DAP</title>
   </head>
   <body style="background-color: whitesmoke">
     <!-- Navbar -->

@@ -23,8 +23,8 @@ if (!isset($_SESSION['username']) || $_SESSION['status'] !== 'madya') {
         padding: 2rem 0;
       }
     </style>
-
-    <title>Project</title>
+    <link rel="icon" href="dap.png" />
+    <title>FSKP DAP</title>
   </head>
   <body style="background-color: whitesmoke">
     <!-- Navbar -->

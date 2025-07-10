@@ -30,7 +30,8 @@ if (!isset($_SESSION['username']) || $_SESSION['status'] !== 'madya') {
     }
     </style>
 
-    <title>Project</title>
+    <link rel="icon" href="dap.png" />
+    <title>FSKP DAP</title>
   </head>
   <body style="background-color: whitesmoke">
     <!-- Navbar -->
@@ -69,7 +70,7 @@ if (!isset($_SESSION['username']) || $_SESSION['status'] !== 'madya') {
           </div>
           <div class="input-group mb-3">
             <span class="input-group-text" id="NIP">NIP</span>
-            <input type="number" placeholder="NIP" name="NIP" class="form-control" required />
+            <input type="number" name="NIP" class="form-control" value="<?= $_SESSION['username']; ?>" readonly required />
           </div>
           <div class="input-group mb-3">
             <span class="input-group-text" id="Jabatan">Jabatan</span>

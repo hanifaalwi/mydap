@@ -34,6 +34,7 @@
 <?php
 require 'vendor/autoload.php';
 include 'koneksi.php';
+include 'minio.php';
 
 // Pastikan Nomor ada
 if (!isset($_GET['Nomor'])) {
@@ -53,19 +54,7 @@ if (!$data || empty($data['SKP'])) {
 $namaFile = $data['SKP']; // Nama file yang tersimpan di MinIO
 $bucket   = 'uploads';
 
-// Konfigurasi MinIO client
-use Aws\S3\S3Client;
-
-$s3 = new S3Client([
-    'version' => 'latest',
-    'region'  => 'us-east-1',
-    'endpoint' => 'http://127.0.0.1:9000',
-    'use_path_style_endpoint' => true,
-    'credentials' => [
-        'key'    => 'minioadmin',
-        'secret' => 'minioadmin',
-    ],
-]);
+$s3 = getMinioClient();
 
 try {
     // Ambil file dari MinIO

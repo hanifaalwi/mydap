@@ -20,7 +20,8 @@ $pecah = mysqli_fetch_assoc($query);
     <link rel="stylesheet" href="style.css" />
     <!-- CSS End -->
 
-    <title>Project</title>
+    <link rel="icon" href="dap.png" />
+    <title>FSKP DAP</title>
     <style>
         body { font-family: 'Times New Roman', Times, serif; margin: 40px; }
         .header { text-align: center; margin-bottom: 40px; }

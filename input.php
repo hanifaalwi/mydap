@@ -56,6 +56,7 @@
 <?php
 require 'vendor/autoload.php';
 include 'koneksi.php';
+include 'minio.php';
 
 use Aws\S3\S3Client;
 use Aws\Exception\AwsException;
@@ -83,17 +84,7 @@ if (strtolower($ext) != 'pdf') {
 // Buat nama unik untuk file
 $namaBaru = uniqid() . '_' . $namaFile;
 
-// Konfigurasi MinIO
-$s3 = new S3Client([
-    'version'     => 'latest',
-    'region'      => 'us-east-1',
-    'endpoint'    => 'http://127.0.0.1:9000', // Ganti jika akses dari jaringan lain
-    'use_path_style_endpoint' => true,
-    'credentials' => [
-        'key'    => 'minioadmin',
-        'secret' => 'minioadmin',
-    ],
-]);
+$s3 = getMinioClient();
 
 try {
     // Upload ke MinIO bucket "uploads"
