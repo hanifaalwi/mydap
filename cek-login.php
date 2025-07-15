@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         } if ($data['status'] == 'kabid') {
             header('Location: data.php');
         } if ($data['status'] == 'admin') {
-            header('Location: rekap.php');
+            header('Location: admin.php');
         }
         exit();
     } else {

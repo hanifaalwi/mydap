@@ -114,8 +114,12 @@ if (!isset($_SESSION['username']) || $_SESSION['status'] !== 'madya') {
             </select>
           </div>
           <div class="input-group mb-3">
-            <span class="input-group-text" id="status">Status</span>
+            <span class="input-group-text" id="status">Status Kabid</span>
             <input type="text" name="status" class="form-control" value="pending" required readonly />
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="statuss">Status Kadis</span>
+            <input type="text" name="statuss" class="form-control" value="pending" required readonly />
           </div>
           <div class="input-group mb-3">
             <span class="input-group-text" id="tanggal">Tanggal</span>

@@ -97,7 +97,7 @@ function isAktif($val) {
                 <td><?php echo $pecah['Nama']; ?></td>
                 <td><?php echo $pecah['NIP']; ?></td>
                 <td><?php echo $pecah['Jabatan']; ?></td>
-                <td><a class="btn btn-success" href="skp.php?Nomor=<?php echo $pecah['Nomor']; ?>" target="_blank">SKP</a></td>
+                <td><a class="btn btn-success" href="<?php echo $pecah['SKP']; ?>" target="_blank">SKP</a></td>
                 <td>
                   <?php if (strtolower($pecah['Periode']) !== 'awal'): ?>
                     <a class="btn btn-success" href="<?php echo $pecah['Link']; ?>" target="_blank">Link</a>

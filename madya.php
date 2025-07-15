@@ -20,7 +20,7 @@ if (!isset($_SESSION['username']) || $_SESSION['status'] !== 'madya') {
     <style>
       .jumbotron2 {
         background-color: whitesmoke;
-        padding: 2rem 0;
+        padding: 0 2rem;
       }
     </style>
     <link rel="icon" href="dap.png" />
@@ -45,7 +45,7 @@ if (!isset($_SESSION['username']) || $_SESSION['status'] !== 'madya') {
     </nav>
     <!-- Navbar End -->
 
-    <section class="jumbotron2 text-center">
+    <section class="jumbotron text-center">
       <div class="card-custom mx-auto" style="max-width: 1500px;">
 
         <!-- Tombol Filter -->
@@ -81,7 +81,8 @@ if (!isset($_SESSION['username']) || $_SESSION['status'] !== 'madya') {
                 <th>SKP</th>
                 <th>Link</th>
                 <th>Periode</th>
-                <th>Tools</th>
+                <th>Status Kabid</th>
+                <th>Status Kadis</th>
                 <th>Waktu</th>
               </tr>
             </thead>
@@ -107,7 +108,7 @@ if (!isset($_SESSION['username']) || $_SESSION['status'] !== 'madya') {
                 <td><?php echo $pecah['Jabatan']; ?></td>
                 <td><?php echo $pecah['Bidang']; ?></td>
                 <td><?php echo $pecah['Kabid']; ?></td>
-                <td><a class="btn btn-success" href="skp.php?Nomor=<?php echo $pecah['Nomor']; ?>" target="_blank">SKP</a></td>
+                <td><a class="btn btn-success" href="skp.php?Nomor=<?= $pecah['Nomor'] ?>" target="_blank">SKP</a></td>
                 <td>
                   <?php if (strtolower($pecah['Periode']) !== 'awal'): ?>
                     <a class="btn btn-success" href="<?php echo $pecah['Link']; ?>" target="_blank">Link</a>
@@ -122,6 +123,18 @@ if (!isset($_SESSION['username']) || $_SESSION['status'] !== 'madya') {
                     <a class="btn btn-success" href="surat.php?Nomor=<?php echo $pecah['Nomor']; ?>" target="_blank"><i class="fa fa-print"></i></a>
                   <?php elseif ($status == 'revisi'): ?>
                     <a class="btn btn-danger" onclick="tampilkanKomentar(<?php echo $pecah['Nomor']; ?>)"><i class="fa fa-ban"></i></a>
+                    <a class="btn btn-danger" href="editmadya.php?Nomor=<?php echo $pecah['Nomor']; ?>"><i class="fa fa-edit"></i></a>
+                  <?php else: ?>
+                    <a class="btn btn-warning" href="#"><i class="fa fa-spinner"></i></a>
+                  <?php endif; ?>
+                </td>
+                <td>
+                  <?php $statuss = strtolower($pecah['statuss']); ?>
+                  <?php if ($statuss == 'disetujui'): ?>
+                    <a class="btn btn-success" href="surat.php?Nomor=<?php echo $pecah['Nomor']; ?>" target="_blank"><i class="fa fa-print"></i></a>
+                  <?php elseif ($statuss == 'revisi'): ?>
+                    <a class="btn btn-danger" onclick="tampilkanKomentar(<?php echo $pecah['Nomor']; ?>)"><i class="fa fa-ban"></i></a>
+                    <a class="btn btn-danger" href="editmadya.php?Nomor=<?php echo $pecah['Nomor']; ?>"><i class="fa fa-edit"></i></a>
                   <?php else: ?>
                     <a class="btn btn-warning" href="#"><i class="fa fa-spinner"></i></a>
                   <?php endif; ?>
@@ -135,6 +148,39 @@ if (!isset($_SESSION['username']) || $_SESSION['status'] !== 'madya') {
       </div>
     </section>
 
+    <section class="jumbotron2 text-center">
+      <div class="card-custom mx-auto" style="max-width: 1500px;">
+        <h3>Riwayat Edit</h3>
+        <div style="padding: 0 2rem;">
+          <table  class="table table-hover table-striped">
+            <thead>
+              <tr class="text-center">
+                <th>No</th>
+                <th>Waktu</th>
+                <th style="table-layout: fixed; word-wrap: break-word; max-width: 1000px;">Data Lama</th>
+              </tr>
+            </thead>
+            <tbody>
+              <?php
+              include "koneksi.php";
+              $user_input = $_SESSION['username'];
+              $query_mysqli = mysqli_query($connect, "SELECT * FROM history_data WHERE user_input = '$user_input'") or die(mysqli_error($connect));
+
+              $id = 1;
+              while($pecah = mysqli_fetch_array($query_mysqli)) {
+              ?>
+              <tr class="text-center">
+                <th scope="row"><?php echo $id++; ?></th>
+                <td><?php echo $pecah['waktu']; ?></td>
+                <td style="table-layout: fixed; word-wrap: break-word; max-width: 1000px;"><?php echo $pecah['data_lama']; ?></td>
+              </tr>
+              <?php } ?>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+    
     <!-- JS -->
     <script>
       function tampilkanKomentar(Nomor) {

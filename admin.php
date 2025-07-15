@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-if (!isset($_SESSION['username']) || ($_SESSION['status'] !== 'kadis')) {
+if (!isset($_SESSION['username']) || ($_SESSION['status'] !== 'admin')) {
     header('Location: login.php');
     exit();
 }
@@ -28,7 +28,9 @@ if (!isset($_SESSION['username']) || ($_SESSION['status'] !== 'kadis')) {
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link active" href="#">Rekap</a></li>
+          <li class="nav-item"><a class="nav-link active" href="#">Rekap Data</a></li>
+          <li class="nav-item"><a class="nav-link" href="users.php">Kelola User</a></li>
+          <li class="nav-item"><a class="nav-link" href="tambahuser.php">Tambah User</a></li>
           <li class="nav-item"><a class="nav-link" href="logout.php">Logout</a></li>
         </ul>
       </div>
@@ -89,7 +91,7 @@ if (!isset($_SESSION['username']) || ($_SESSION['status'] !== 'kadis')) {
                     <th>Link</th>
                     <th>Periode</th>
                     <th>Status Kabid</th>
-                    <th>Tools</th>
+                    <th>Status Kadis</th>
                   </tr>
                 </thead>
                 <tbody>";
@@ -121,16 +123,13 @@ if (!isset($_SESSION['username']) || ($_SESSION['status'] !== 'kadis')) {
             }
 
             $statuss = strtolower($pegawai['statuss']);
-            $isFinal = ($statuss === 'disetujui' || $statuss === 'revisi');
-
-            $disabled = $isFinal ? 'disabled' : '';
-            $confirmAcc = $isFinal ? 'return false;' : "return confirm('Apakah Anda yakin ingin menyetujui data ini?')";
-            $confirmRev = $isFinal ? 'return false;' : "return confirm('Apakah Anda yakin ingin menolak data ini?')";
-
-            echo "<td>";
-            echo "<a href='accs.php?Nomor={$pegawai['Nomor']}&statuss=disetujui' class='btn btn-primary me-1 $disabled' onclick=\"$confirmAcc\"><i class='fa fa-check'></i></a>";
-            echo "<a href='revisis.php?Nomor={$pegawai['Nomor']}&statuss=revisi' class='btn btn-danger $disabled' onclick=\"$confirmRev\"><i class='fa fa-times'></i></a>";
-            echo "</td>";
+            if ($statuss === 'disetujui') {
+                echo "<td><a class='btn btn-success' href='surat.php?Nomor={$pegawai['Nomor']}' target='_blank'><i class='fa fa-print'></i></a></td>";
+            } elseif ($statuss === 'revisi') {
+                echo "<td><a class='btn btn-danger' href='#'><i class='fa fa-ban'></i></a></td>";
+            } else {
+                echo "<td><a class='btn btn-warning' href='#'><i class='fa fa-spinner'></i></a></td>";
+            }          
 
             echo "</tr>";
             $Nomor++;
