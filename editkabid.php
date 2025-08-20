@@ -2,8 +2,8 @@
 include "koneksi.php";
 session_start();
 
-$id = $_GET['id']; // Ambil ID dari URL
-$query = mysqli_query($connect, "SELECT * FROM users WHERE id ='$id'") or die(mysqli_error($connect));
+$No = $_GET['No']; // Ambil ID dari URL
+$query = mysqli_query($connect, "SELECT * FROM kabid WHERE No ='$No'") or die(mysqli_error($connect));
 $row = mysqli_fetch_assoc($query);
 
 // Proteksi akses
@@ -50,28 +50,20 @@ if (!isset($_SESSION['username']) || $_SESSION['status'] !== 'admin') {
   <section class="jumbotron text-center">
     <div class="card-custom mx-auto" style="max-width: 1500px;">
       <h1 class="display-4">Edit User</h1><br>
-      <form action="edituseraction.php" method="POST" enctype="multipart/form-data">
-        <input type="hidden" name="id" value="<?= $row['id']; ?>">
+      <form action="editkabidaction.php" method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="No" value="<?= $row['No']; ?>">
         <div style="padding-left: 2rem; padding-right: 2rem">
           <div class="input-group mb-3">
-            <span class="input-group-text">Username</span>
-            <input type="number" name="username" class="form-control" value="<?= $row['username']; ?>" readonly required />
+            <span class="input-group-text">Nama</span>
+            <input type="text" name="Namak" class="form-control" value="<?= $row['Namak']; ?>" required />
           </div>
           <div class="input-group mb-3">
-            <span class="input-group-text">Password</span>
-            <input type="text" name="password" class="form-control" value="<?= $row['password']; ?>" required />
+            <span class="input-group-text">NIP</span>
+            <input type="number" name="NIPk" class="form-control" value="<?= $row['NIPk']; ?>" required />
           </div>
           <div class="input-group mb-3">
             <span class="input-group-text">Status</span>
-            <select class="form-select" name="status" required>
-              <option <?= $row['status'] == 'kadis' ? 'selected' : '' ?>>Kepala Dinas</option>
-              <option <?= $row['status'] == 'arsip' ? 'selected' : '' ?>>Kepala Bidang Kearsipan</option>
-              <option <?= $row['status'] == 'bina' ? 'selected' : '' ?>>Kepala Bidang Pembinaan</option>
-              <option <?= $row['status'] == 'deposit' ? 'selected' : '' ?>>Kepala Bidang Deposit</option>
-              <option <?= $row['status'] == 'layanan' ? 'selected' : '' ?>>Kepala Bidang Layanan</option>
-              <option <?= $row['status'] == 'madya' ? 'selected' : '' ?>>Fungsional Ahli Madya</option>
-              <option <?= $row['status'] == 'admin' ? 'selected' : '' ?>>Admin</option>
-            </select>
+            <input type="text" name="Statusk" class="form-control" value="<?= $row['Statusk']; ?>" readonly required />
           </div>
         </div>
         <div class="col-12">

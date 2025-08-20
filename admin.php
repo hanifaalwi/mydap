@@ -67,9 +67,9 @@ if (!isset($_SESSION['username']) || ($_SESSION['status'] !== 'admin')) {
         $periodeFilter = $_GET['periode'] ?? '';
 
         if ($periodeFilter != '') {
-            $query_mysqli = mysqli_query($connect,"SELECT * FROM data WHERE LOWER(Periode) = '$periodeFilter' ORDER BY Kabid") or die(mysqli_error($connect));
+            $query_mysqli = mysqli_query($connect,"SELECT * FROM data WHERE LOWER(Periode) = '$periodeFilter' ORDER BY Bidang") or die(mysqli_error($connect));
         } else {
-            $query_mysqli = mysqli_query($connect,"SELECT * FROM data ORDER BY Kabid") or die(mysqli_error($connect));
+            $query_mysqli = mysqli_query($connect,"SELECT * FROM data ORDER BY Bidang") or die(mysqli_error($connect));
         }
 
         $kelompok_kabid = [];
@@ -92,6 +92,7 @@ if (!isset($_SESSION['username']) || ($_SESSION['status'] !== 'admin')) {
                     <th>Periode</th>
                     <th>Status Kabid</th>
                     <th>Status Kadis</th>
+                    <th>Tools</th>
                   </tr>
                 </thead>
                 <tbody>";
@@ -129,7 +130,9 @@ if (!isset($_SESSION['username']) || ($_SESSION['status'] !== 'admin')) {
                 echo "<td><a class='btn btn-danger' href='#'><i class='fa fa-ban'></i></a></td>";
             } else {
                 echo "<td><a class='btn btn-warning' href='#'><i class='fa fa-spinner'></i></a></td>";
-            }          
+            } 
+            
+            echo "<td><a class='btn btn-danger' href='hapus.php?Nomor={$pegawai['Nomor']}' target='_blank'><i class='fa fa-trash-o'></i></a></td>";
 
             echo "</tr>";
             $Nomor++;

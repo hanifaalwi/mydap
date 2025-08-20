@@ -2,9 +2,11 @@
 include "koneksi.php";
 session_start();
 
-// Cek apakah user sudah login dan memiliki status 'user'
-if (!isset($_SESSION['username']) || $_SESSION['status'] !== 'kabid') {
-    header('Location: login.php'); // Redirect ke halaman login jika belum login atau bukan user
+// Cek apakah user sudah login dan memiliki status yang diizinkan
+$allowed_status = ['arsip', 'bina', 'deposit', 'layanan'];
+
+if (!isset($_SESSION['username']) || !in_array($_SESSION['status'], $allowed_status)) {
+    header('Location: login.php'); // Redirect ke halaman login jika belum login atau status tidak sesuai
     exit();
 }
 
@@ -78,10 +80,10 @@ function isAktif($val) {
             <tbody>
             <?php 
             $bidang = '';
-            if ($_SESSION['username'] == '196707241999031006') $bidang = 'Kearsipan';
-            if ($_SESSION['username'] == '196808151999032001') $bidang = 'Pembinaan dan Pengawasan';
-            if ($_SESSION['username'] == '197209231992022001') $bidang = 'Deposit, Pengembangan, dan Pelestarian Bahan Perpustakaan';
-            if ($_SESSION['username'] == '199203242014061003') $bidang = 'Layanan, Otomasi, dan Kerja sama Perpustakaan';
+            if ($_SESSION['status'] == 'arsip') $bidang = 'Kearsipan';
+            if ($_SESSION['status'] == 'bina') $bidang = 'Pembinaan dan Pengawasan';
+            if ($_SESSION['status'] == 'deposit') $bidang = 'Deposit, Pengembangan, dan Pelestarian Bahan Perpustakaan';
+            if ($_SESSION['status'] == 'layanan') $bidang = 'Layanan, Otomasi, dan Kerja sama Perpustakaan';
 
             $sql = "SELECT * FROM data WHERE Bidang = '$bidang'";
             if ($periodeFilter != '') {

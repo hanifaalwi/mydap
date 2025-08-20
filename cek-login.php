@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             header('Location: rekap.php');
         } if ($data['status'] == 'madya') {
             header('Location: madya.php');
-        } if ($data['status'] == 'kabid') {
+        } if (in_array($data['status'], ['arsip', 'bina', 'deposit', 'layanan'])) {
             header('Location: data.php');
         } if ($data['status'] == 'admin') {
             header('Location: admin.php');

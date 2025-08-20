@@ -15,6 +15,12 @@ if (!isset($_SESSION['username']) || ($_SESSION['status'] !== 'admin')) {
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="style.css" />
+  <style>
+    .jumbotron2 {
+      background-color: whitesmoke;
+      padding: 0 2rem;
+    }
+  </style>
   <link rel="icon" href="dap.png" />
   <title>FSKP DAP</title>
 </head>
@@ -69,6 +75,7 @@ if (!isset($_SESSION['username']) || ($_SESSION['status'] !== 'admin')) {
                 <td><?php echo $pecah['status']; ?></td>
                 <td>
                   <a class="btn btn-secondary" href="edituser.php?id=<?php echo $pecah['id']; ?>"><i class="fa fa-edit"></i></a>
+                  <a class="btn btn-dark" href="hapususer.php?id=<?php echo $pecah['id']; ?>"><i class="fa fa-trash"></i></a>
                 </td>
               </tr>
               <?php } ?>
@@ -77,6 +84,45 @@ if (!isset($_SESSION['username']) || ($_SESSION['status'] !== 'admin')) {
         </div>
       </div>
     </section>
+
+    <section class="jumbotron2 text-center">
+    <div class="card-custom mx-auto" style="max-width: 1500px;">
+      <h1 class="display-4">Data Kepala Bidang</h1><br>
+      <div style="padding: 0 2rem;">
+        <table class="table table-hover table-striped">
+          <thead>
+            <tr class="text-center">
+              <th>No</th>
+              <th>Nama</th>
+              <th>NIP</th>
+              <th>Status</th>
+              <th>Tools</th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php
+            include "koneksi.php";
+            $query_mysqli = mysqli_query($connect,"SELECT * FROM kabid") or die(mysqli_error($connect));
+
+            $No = 1;
+            while($pecah = mysqli_fetch_array($query_mysqli)) {
+            ?>
+              <tr class="text-center">
+                <th scope="row"><?php echo $No++; ?></th>
+                <td><?php echo $pecah['Namak']; ?></td>
+                <td><?php echo $pecah['NIPk']; ?></td>
+                <td><?php echo $pecah['Statusk']; ?></td>
+                <td>
+                  <a class="btn btn-secondary" href="editkabid.php?No=<?php echo $pecah['No']; ?>"><i class="fa fa-edit"></i></a>
+                </td>
+              </tr>
+              <?php } ?>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+    <br>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>

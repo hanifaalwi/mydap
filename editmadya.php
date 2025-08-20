@@ -77,14 +77,20 @@ if (!isset($_SESSION['username']) || $_SESSION['status'] !== 'madya') {
           <div class="input-group mb-3">
             <span class="input-group-text">Kepala Bidang</span>
             <select class="form-select" name="Kabid" required>
-              <option <?= $row['Kabid'] == 'Sosy Findra, S.Kom' ? 'selected' : '' ?>>Sosy Findra, S.Kom</option>
-              <option <?= $row['Kabid'] == 'Kiswati SS,MPA' ? 'selected' : '' ?>>Kiswati SS,MPA</option>
-              <option <?= $row['Kabid'] == 'Dian Dewi Kartika, S.Sos, M.Si' ? 'selected' : '' ?>>Dian Dewi Kartika, S.Sos, M.Si</option>
-              <option <?= $row['Kabid'] == 'Fajri Rahmad Ersya, S.STP, M.Si' ? 'selected' : '' ?>>Fajri Rahmad Ersya, S.STP, M.Si</option>
+              <?php
+                include "koneksi.php";
+                $kabidTerpilih = isset($row['Kabid']) ? $row['Kabid'] : ''; // Cek aman
+
+                $query = mysqli_query($connect, "SELECT * FROM kabid ORDER BY Namak ASC");
+                while($rows = mysqli_fetch_assoc($query)) {
+                    $selected = ($rows['Namak'] == $kabidTerpilih) ? 'selected' : '';
+                    echo '<option value="'.$rows['Namak'].'" '.$selected.'>'.$rows['Namak'].'</option>';
+                }
+              ?>
             </select>
           </div>
           <div class="input-group mb-3">
-            <span class="input-group-text" id="SKP">SKP</span>
+            <span class="input-group-text" id="SKP">SKP</span> 
             <input type="file" name="SKP" class="form-control" accept="application/pdf" />
           </div>            
           <div class="input-group mb-3">

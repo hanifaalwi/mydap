@@ -87,11 +87,15 @@ if (!isset($_SESSION['username']) || $_SESSION['status'] !== 'madya') {
           </div>
           <div class="input-group mb-3">
             <span class="input-group-text" id="Kabid">Kepala Bidang</span>
-            <select class="form-select" name="Kabid">
-              <option value="Sosy Findra, S.Kom">Sosy Findra, S.Kom</option>
-              <option value="Kiswati SS,MPA">Kiswati SS,MPA</option>
-              <option value="Dian Dewi Kartika, S.Sos, M.Si">Dian Dewi Kartika, S.Sos, M.Si</option>
-              <option value="Fajri Rahmad Ersya, S.STP, M.Si">Fajri Rahmad Ersya, S.STP, M.Si</option>
+            <select class="form-select" name="Kabid" required>
+              <option value="" selected disabled>Pilih Kepala Bidang</option>
+              <?php
+                include "koneksi.php";
+                $query = mysqli_query($connect, "SELECT * FROM kabid ORDER BY Namak ASC");
+                while($row = mysqli_fetch_assoc($query)) {
+                    echo '<option value="'.$row['Namak'].'">'.$row['Namak'].'</option>';
+                }
+              ?>
             </select>
           </div>
           <div class="input-group mb-3">

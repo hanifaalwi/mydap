@@ -94,7 +94,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <span id="status" class="input-group-text">Status</span>
             <select class="form-select" name="status">
               <option value="kadis">Kepala Dinas</option>
-              <option value="kabid">Kepala Bidang</option>
+              <option value="arsip">Kepala Bidang Kearsipan</option>
+              <option value="bina">Kepala Bidang Pembinaan</option>
+              <option value="deposit">Kepala Bidang Deposit</option>
+              <option value="layanan">Kepala Bidang Layanan</option>
               <option value="madya">Fungsional Ahli Madya</option>
               <option value="admin">Admin</option>
             </select>

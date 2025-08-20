@@ -1,10 +1,17 @@
 <?php
 include "koneksi.php";
 
-$Nomor = $_GET['Nomor'];
-$query = mysqli_query($connect, "SELECT * FROM data Where Nomor = $Nomor") or die(mysqli_error($connect));
+// Ambil data pegawai berdasarkan Nomor
+$Nomor = intval($_GET['Nomor']);
+$query = mysqli_query($connect, "SELECT * FROM data WHERE Nomor = $Nomor") or die(mysqli_error($connect));
 $pecah = mysqli_fetch_assoc($query);
+
+// Ambil data kabid berdasarkan Nama Kabid yang ada di tabel 'data'
+$kabidName = $pecah['Kabid'];
+$queryKabid = mysqli_query($connect, "SELECT * FROM kabid WHERE Namak = '$kabidName'") or die(mysqli_error($connect));
+$dataKabid = mysqli_fetch_assoc($queryKabid);
 ?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,15 +62,10 @@ $pecah = mysqli_fetch_assoc($query);
 <div class="ttd container">
     <div class="row">
         <div class="col-sm left">
-            <br>
+            <br>     
             Kepala Bidang<br><br><br><br>
-            <u><?php echo $pecah['Kabid']; ?></u><br>
-            <?php 
-            if ($pecah['Kabid']=="Sosy Findra, S.Kom"){ echo "196707241999031006";} 
-            if ($pecah['Kabid']=="Kiswati SS,MPA"){echo "196808151999032001";} 
-            if ($pecah['Kabid']=="Dian Dewi Kartika, S.Sos, M.Si") {echo "197209231992022001";}
-            if ($pecah['Kabid']=="Fajri Rahmad Ersya, S.STP, M.Si") {echo "199203242014061003";} 
-            ?>
+            <u><?php echo $dataKabid['Namak']; ?></u><br>
+            <?php echo $dataKabid['NIPk']; ?>
         </div>
         <div class="col-sm right">
             Padang, <?php echo date("d F Y"); ?><br>
